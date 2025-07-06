@@ -1,0 +1,61 @@
+.dark {
+  background: #1e1e1e;
+  color: white;
+  font-family: Tahoma, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  height: 100vh;
+}
+.sidebar {
+  width: 20%;
+  background: #2d2d2d;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.sidebar button {
+  width: 100%;
+  padding: 10px;
+  background: #0a84ff;
+  color: white;
+  border: none;
+  margin-top: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.main {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+}
+.input-area {
+  display: flex;
+  padding: 10px;
+  background: #333;
+}
+input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+button {
+  margin-left: 10px;
+  padding: 10px 20px;
+  background: green;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+.message {
+  background: #3a3a3a;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 60%;
+}
