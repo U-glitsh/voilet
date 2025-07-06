@@ -1,83 +1,232 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <title>روابط Voilet 💜</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Cairo', sans-serif;
-            background: linear-gradient(to right, #3f51b5, #9c27b0);
-            color: white;
-            text-align: center;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .container {
-            background-color: rgba(0, 0, 0, 0.4);
-            border-radius: 20px;
-            padding: 40px;
-            max-width: 600px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
-        }
-
-        h1 {
-            margin-bottom: 10px;
-            font-size: 2.8em;
-        }
-
-        p {
-            font-size: 1.2em;
-            margin-bottom: 30px;
-        }
-
-        .links a {
-            display: block;
-            background-color: white;
-            color: #6a1b9a;
-            text-decoration: none;
-            padding: 15px 20px;
-            margin: 10px auto;
-            border-radius: 30px;
-            width: 80%;
-            max-width: 400px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .links a:hover {
-            background-color: #d1c4e9;
-            transform: scale(1.05);
-        }
-
-        .footer {
-            margin-top: 30px;
-            font-size: 0.9em;
-            color: #ddd;
-        }
-
-        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
-    </style>
+  <meta charset="UTF-8">
+  <title>منصة المحادثة المتقدمة</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #eee;
+    }
+    .container {
+      display: flex;
+      height: 100vh;
+    }
+    .sidebar {
+      width: 280px;
+      background: #222;
+      padding: 20px;
+      border-left: 2px solid #444;
+    }
+    .sidebar h2, .sidebar h3 {
+      text-align: center;
+    }
+    .user-info, .currency {
+      margin: 10px 0;
+    }
+    .store {
+      margin-top: 20px;
+    }
+    .store-item {
+      background: #333;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    .chat-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: #1a1a1a;
+    }
+    .messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+    }
+    .message {
+      margin: 10px 0;
+      background: #2a2a2a;
+      padding: 10px;
+      border-radius: 5px;
+      width: fit-content;
+      max-width: 80%;
+    }
+    .user {
+      align-self: flex-end;
+      background: #007bff;
+    }
+    .bot {
+      align-self: flex-start;
+    }
+    .input-area {
+      display: flex;
+      padding: 10px;
+      border-top: 1px solid #444;
+      background: #222;
+    }
+    .input-area input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      background: #333;
+      color: #eee;
+    }
+    .input-area button {
+      padding: 10px;
+      background: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .admin-panel {
+      margin-top: 30px;
+      border-top: 1px solid #444;
+      padding-top: 10px;
+    }
+    .admin-panel input, .admin-panel button {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      background: #333;
+      color: white;
+      border: none;
+    }
+    .admin-panel button {
+      background: #0066cc;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>مرحبًا بك في صفحة Youseef 7rB الخاصة ب الحسابات الشخصية</h1>
-        <p>كل حساباتي وروابطي في مكان واحد !</p>
-        <div class="links">
-            <a href="https://www.facebook.com/Youseef" target="_blank">فيسبوك</a>
-            <a href="https://www.instagram.com/its.mosscow" target="_blank">إنستجرام</a>
-            <a href="https://t.me/itsmosscow" target="_blank">تليجرام</a>
-            <a href="https://www.youtube.com/itsmosscow" target="_blank">يوتيوب</a>
-            <a href="https://github.com/U-glitsh" target="_blank">جيت هب</a>
-            <a href="mailto:itsmosscow@gmail.com">الإيميل</a>
+  <div class="container">
+    <div class="sidebar">
+      <h2>الملف الشخصي</h2>
+      <div class="user-info">
+        <strong>👤 المستخدم:</strong> 
+        <span id="username">NOX CHAT</span> 
+        <span id="verifiedBadge" title="حساب موثَّق ✅" style="color: #1da1f2; display: none;">✔️</span>
+      </div>
+
+      <div class="currency">
+        <strong>العملات:</strong> <span id="coins">100</span> 🪙
+      </div>
+
+      <div class="store">
+        <h3>🛒 المتجر</h3>
+        <div class="store-item">
+          ✨ خلفية جديدة - 50 🪙 <button onclick="buyItem(50)">شراء</button>
         </div>
-        <div class="footer">
-            تصميم يدوي خصيصًا لـ Voilet 💜 – <script>document.write(new Date().getFullYear());</script>
+        <div class="store-item">
+          🎩 قبعة أفاتار - 30 🪙 <button onclick="buyItem(30)">شراء</button>
         </div>
+        <div class="store-item">
+          ✅ توثيق الحساب - 70 🪙 <button onclick="buyVerification()">شراء</button>
+        </div>
+      </div>
+
+      <div class="admin-panel">
+        <h3>🔐 لوحة المدير</h3>
+        <input type="text" id="verifyUserInput" placeholder="اسم المستخدم لتوثيقه">
+        <button onclick="verifyUser()">توثيق الحساب</button>
+      </div>
     </div>
+
+    <div class="chat-area">
+      <div class="messages" id="messages">
+        <div class="message bot">🤖 مرحبًا بك! كيف يمكنني مساعدتك؟</div>
+      </div>
+      <div class="input-area">
+        <input type="text" id="chatInput" placeholder="اكتب رسالتك...">
+        <button onclick="sendMessage()">إرسال</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let coins = 100;
+    let currentUsername = "NOX CHAT";
+    let verifiedUsers = ["NOX CHAT"]; // ← يمكن تعديلهم
+
+    // تحديث اسم المستخدم والعلامة الزرقاء
+    window.onload = () => {
+      document.getElementById("username").innerText = currentUsername;
+      updateVerification();
+    };
+
+    function updateVerification() {
+      const badge = document.getElementById("verifiedBadge");
+      if (verifiedUsers.includes(currentUsername)) {
+        badge.style.display = "inline";
+      } else {
+        badge.style.display = "none";
+      }
+    }
+
+    function sendMessage() {
+      const input = document.getElementById("chatInput");
+      const text = input.value.trim();
+      if (!text) return;
+
+      // رسالة المستخدم
+      const userMsg = document.createElement("div");
+      userMsg.className = "message user";
+      userMsg.innerText = text;
+      messages.appendChild(userMsg);
+
+      // رسالة البوت
+      const botMsg = document.createElement("div");
+      botMsg.className = "message bot";
+      botMsg.innerText = "جارٍ المعالجة...";
+      messages.appendChild(botMsg);
+
+      input.value = "";
+      messages.scrollTop = messages.scrollHeight;
+
+      setTimeout(() => {
+        botMsg.innerText = "🤖 تم استلام رسالتك: " + text;
+      }, 1000);
+    }
+
+    function buyItem(cost) {
+      if (coins >= cost) {
+        coins -= cost;
+        document.getElementById("coins").innerText = coins;
+        alert("✅ تم شراء العنصر بنجاح!");
+      } else {
+        alert("❌ لا يوجد رصيد كافٍ!");
+      }
+    }
+
+    function buyVerification() {
+      if (verifiedUsers.includes(currentUsername)) {
+        alert("🚫 حسابك موثَّق بالفعل.");
+        return;
+      }
+
+      if (coins >= 70) {
+        coins -= 70;
+        document.getElementById("coins").innerText = coins;
+        verifiedUsers.push(currentUsername);
+        updateVerification();
+        alert("✅ تم شراء التوثيق بنجاح!");
+      } else {
+        alert("❌ لا يوجد رصيد كافٍ لشراء التوثيق.");
+      }
+    }
+
+    function verifyUser() {
+      const user = document.getElementById("verifyUserInput").value.trim();
+      if (user && !verifiedUsers.includes(user)) {
+        verifiedUsers.push(user);
+        if (user === currentUsername) updateVerification();
+        alert("✅ تم توثيق " + user + " بنجاح!");
+      } else {
+        alert("❌ أدخل اسم صحيح أو المستخدم موثَّق بالفعل.");
+      }
+    }
+  </script>
 </body>
 </html>
