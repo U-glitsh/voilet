@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>تسجيل الدخول</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark">
+  <div class="main">
+    <h2>تسجيل الدخول إلى الشات</h2>
+    <input id="username" placeholder="اسم المستخدم" />
+    <input id="avatar" placeholder="رابط الصورة الشخصية (اختياري)" />
+    <button onclick="login()">دخول</button>
+  </div>
+
+  <script>
+    function login() {
+      const name = document.getElementById("username").value.trim();
+      const avatar = document.getElementById("avatar").value.trim();
+      if (!name) return alert("ادخل اسمك");
+      localStorage.setItem("username", name);
+      if (avatar) localStorage.setItem("avatar", avatar);
+      window.location.href = "chat.html";
+    }
+  </script>
+</body>
+</html>

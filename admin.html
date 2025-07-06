@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>لوحة تحكم الأدمن</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark">
+  <div class="main">
+    <h2>لوحة تحكم الأدمن</h2>
+    <input id="userInput" placeholder="اسم المستخدم" />
+    <button onclick="makeAdmin()">منح صلاحية الأدمن</button>
+    <button onclick="verifyUser()">توثيق المستخدم</button>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+    import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyB7FOJ96_V2Mit8Lp3SsX0rPUXgFD3x24s",
+      authDomain: "chat-web-ebd3e.firebaseapp.com",
+      projectId: "chat-web-ebd3e",
+      storageBucket: "chat-web-ebd3e.firebasestorage.app",
+      messagingSenderId: "562511218872",
+      appId: "1:562511218872:web:18205883adcea9990c4c4d",
+      measurementId: "G-NTVR2T9847"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    async function makeAdmin() {
+      const user = document.getElementById("userInput").value.trim();
+      if (!user) return alert("ادخل اسم المستخدم");
+      await setDoc(doc(db, "users", user), { admin: true }, { merge: true });
+      alert("تم منحه صلاحية الأدمن");
+    }
+
+    async function verifyUser() {
+      const user = document.getElementById("userInput").value.trim();
+      if (!user) return alert("ادخل اسم المستخدم");
+      await setDoc(doc(db, "users", user), { verified: true }, { merge: true });
+      alert("تم توثيق المستخدم");
+    }
+  </script>
+</body>
+</html>
